@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Bins</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Smart Bins</h1>
+        <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+    </header>
+    
+    <section>
+        <h2>All Smart Bins</h2>
+        <div class="bins-list">
+            {% for bin in bins %}
+            <div class="bin">
+                <h3>Bin Type: {{ bin.bin_type }}</h3>
+                <p>Location: {{ bin.location }}</p>
+                <p>Current Fill Level: {{ bin.current_fill_level }}%</p>
+                <p>Detected Waste Type: {{ bin.detected_waste_type }}</p>
+                <p>Status: {{ bin.fill_status }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>

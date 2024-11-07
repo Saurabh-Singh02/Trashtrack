@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Smart Waste Management Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Smart Waste Management System</h1>
+        <nav>
+            <a href="{% url 'smart_bins' %}">Smart Bins</a>
+            <a href="{% url 'tracking' %}">Tracking</a>
+            <a href="{% url 'dumping_area' %}">Dumping Area</a>
+            <a href="{% url 'company_portal' %}">Company Portal</a>
+            <a href="{% url 'map_view' %}">Bin Locations Map</a>  <!-- New map link -->
+        </nav>
+        <a href="{% url 'admin:login' %}" class="admin-login-btn">Admin Login</a>
+    </header>
+
+    <section id="bins">
+        <h2>Smart Bins Status</h2>
+        <div class="dashboard-widgets">
+            {% for bin in bins %}
+            <div class="widget">
+                <h3>Bin Type: {{ bin.bin_type }}</h3>
+                <p>Fill Level: {{ bin.current_fill_level }}%</p>
+                <p>Location: {{ bin.location }}</p>
+                <p>Status: {{ bin.fill_status }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="vehicles">
+        <h2>Vehicle Tracking</h2>
+        <div class="dashboard-widgets">
+            {% for vehicle in vehicles %}
+            <div class="widget">
+                <h3>Vehicle ID: {{ vehicle.vehicle_id }}</h3>
+                <p>Location: {{ vehicle.location }}</p>
+                <p>Status: {{ vehicle.status }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section id="waste_types">
+        <h2>Dumping Area Waste Types</h2>
+        <div class="dashboard-widgets">
+            {% for waste_type in waste_types %}
+            <div class="widget">
+                <h3>Waste Type: {{ waste_type.waste_type }}</h3>
+                <p>Quantity: {{ waste_type.quantity }} kg</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+
+</body>
+</html>

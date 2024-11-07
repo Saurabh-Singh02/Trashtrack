@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>Company Portal</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Company Portal</h1>
+        <a href="{% url 'dashboard' %}">Back to Dashboard</a>
+        <a href="{% url 'company_signup' %}">Sign Up for Company Account</a>
+
+    </header>
+    
+    <section>
+        <h2>Registered Companies</h2>
+        <div class="company-list">
+            {% for company in companies %}
+            <div class="company">
+                <h3>{{ company.name }}</h3>
+                <p>Contact Info: {{ company.contact_info }}</p>
+                <p>Registered At: {{ company.registered_at }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
